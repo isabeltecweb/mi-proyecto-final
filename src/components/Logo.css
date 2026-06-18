@@ -1,0 +1,32 @@
+/* src/components/Logo.css */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1a1a1a, #4a1a1a);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  color: white;
+}
+
+.alpaca-icon {
+  font-size: 50px;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+}
+
+.logo-text h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffcc00; /* Color dorado futurista */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.slogan {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-style: italic;
+}

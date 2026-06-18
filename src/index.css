@@ -1,0 +1,6 @@
+/* src/index.css */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background-color: #f9f9f9; color: #333; }
+
+/* Accesibilidad: Foco visible para navegación con teclado */
+:focus { outline: 3px solid #db1d1d; outline-offset: 2px; }
