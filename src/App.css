@@ -24,3 +24,8 @@ nav a:hover, nav a:focus { background: #b71c1c; }
 
 /* Footer */
 footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+
+body { font-family: sans-serif; background-color: #f9f9f9; }
+button { padding: 10px 20px; cursor: pointer; background: #db1d1d; color: white; border: none; border-radius: 5px; }
+button:hover { background: #b01818; }
+.carousel img { height: 200px; object-fit: cover; }
