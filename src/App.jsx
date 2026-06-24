@@ -7,8 +7,9 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <MainContent />
-      {/* Componente del chatbot flotante */}
+      <main id="main-content">
+        <MainContent />
+      </main>
       <AlpacaChatbot />
     </div>
   );

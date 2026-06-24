@@ -1,31 +1,108 @@
-/* src/App.css */
-header { background: #fff; padding: 20px; text-align: center; border-bottom: 2px solid #db1d1d; }
-
-/* Navegación Horizontal (Flexbox) */
-nav { 
-  display: flex; 
-  justify-content: space-around; 
-  background: #db1d1d; 
-  padding: 15px; 
-  align-items: center; 
+/* Configuración Global y Accesibilidad */
+body {
+  font-family: sans-serif;
+  background-color: #f9f9f9;
+  color: #1a1a1a; /* Color oscuro para mejor contraste */
+  margin: 0;
+  padding: 0;
 }
-nav a { color: white; text-decoration: none; font-weight: bold; padding: 10px; border-radius: 4px; }
-nav a:hover, nav a:focus { background: #b71c1c; }
+
+/* Encabezado */
+header {
+  background: #ffffff;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #db1d1d;
+}
+
+/* Navegación */
+nav {
+  display: flex;
+  justify-content: center; /* Centrado para mejor orden */
+  gap: 15px;
+  background: #db1d1d;
+  padding: 15px;
+  align-items: center;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+nav a:hover,
+nav a:focus {
+  background: #9c1515;
+  outline: 2px solid #ffffff; /* Foco visible para accesibilidad */
+}
+
+/* Botones */
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #db1d1d;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+button:hover,
+button:focus {
+  background: #9c1515;
+  outline: 3px solid #ffcc00; /* Contraste fuerte para enfoque */
+}
 
 /* Contenido Principal */
-.main-content { padding: 20px; max-width: 900px; margin: 0 auto; }
+.main-content {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
 /* Carrusel */
-.carousel { display: flex; overflow-x: auto; gap: 20px; padding: 10px; }
-.card { background: white; border: 1px solid #ddd; padding: 15px; border-radius: 8px; min-width: 200px; text-align: center; }
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px;
+}
+
+.carousel img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 15px;
+  border-radius: 8px;
+  min-width: 250px;
+  text-align: center;
+}
 
 /* Estilos de Alpaca Bot */
-.alpaca-box { background: #e8f5e9; border: 2px solid #2e7d32; padding: 20px; border-radius: 10px; margin-top: 30px; }
+.alpaca-box {
+  background: #e8f5e9;
+  border: 2px solid #2e7d32;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+  color: #000000;
+}
 
 /* Footer */
-footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-
-body { font-family: sans-serif; background-color: #f9f9f9; }
-button { padding: 10px 20px; cursor: pointer; background: #db1d1d; color: white; border: none; border-radius: 5px; }
-button:hover { background: #b01818; }
-.carousel img { height: 200px; object-fit: cover; }
+footer {
+  background: #333333;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
