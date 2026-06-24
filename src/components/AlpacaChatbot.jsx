@@ -9,19 +9,12 @@ const AlpacaChatbot = () => {
   
   const recognitionRef = useRef(null);
   const synthRef = useRef(window.speechSynthesis);
+  const chatEndRef = useRef(null);
 
+  // Scroll automático y gestión de foco
   useEffect(() => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.lang = 'es-PE';
-      recognitionRef.current.onresult = (e) => {
-        const transcript = e.results[0][0].transcript;
-        setInputValue(transcript);
-        handleSendMessage(transcript);
-      };
-    }
-  }, []);
+    if (chatEndRef.current) chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const speakMessage = (text) => {
     synthRef.current.cancel();
@@ -44,19 +37,47 @@ const AlpacaChatbot = () => {
   return (
     <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 1000 }}>
       {isOpen && (
-        <section role="dialog" aria-label="Chat de Taste Perú" style={{ width: '300px', background: '#fff', padding: '20px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0,0,0,0.2)' }}>
-          <button onClick={() => setIsOpen(false)} aria-label="Cerrar chat" style={{ float: 'right' }}>X</button>
-          <div style={{ height: '300px', overflowY: 'auto' }}>
-            {messages.map((m, i) => <p key={i}><strong>{m.sender}:</strong> {m.text}</p>)}
+        <section 
+          role="dialog" 
+          aria-labelledby="chat-title" 
+          style={{ width: '320px', background: '#fff', padding: '20px', borderRadius: '12px', boxShadow: '0 5px 15px rgba(0,0,0,0.3)', border: '1px solid #ccc' }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+            <h2 id="chat-title" style={{ fontSize: '1rem', margin: 0 }}>Asistente Taste Perú</h2>
+            <button onClick={() => setIsOpen(false)} aria-label="Cerrar chat" style={{ background: '#db1d1d', color: '#fff', border: 'none', borderRadius: '4px', padding: '5px 10px' }}>X</button>
           </div>
-          <div style={{ display: 'flex', gap: '5px' }}>
-            <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} aria-label="Escribe tu mensaje" />
-            <button onClick={() => handleSendMessage()} aria-label="Enviar mensaje">Enviar</button>
+          
+          {/* aria-live="polite" anuncia los mensajes nuevos al usuario */}
+          <div aria-live="polite" style={{ height: '250px', overflowY: 'auto', marginBottom: '10px', border: '1px solid #eee', padding: '10px', borderRadius: '5px' }}>
+            {messages.map((m, i) => (
+              <p key={i} style={{ margin: '5px 0', color: m.sender === 'user' ? '#000' : '#444' }}>
+                <strong>{m.sender === 'user' ? 'Tú:' : 'Bot:'}</strong> {m.text}
+              </p>
+            ))}
+            <div ref={chatEndRef} />
           </div>
+          
+          <form onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }} style={{ display: 'flex', gap: '5px' }}>
+            <label htmlFor="chat-input" className="sr-only" style={{ display: 'none' }}>Escribe tu mensaje</label>
+            <input 
+              id="chat-input"
+              value={inputValue} 
+              onChange={(e) => setInputValue(e.target.value)} 
+              placeholder="Escribe aquí..."
+              style={{ flex: 1, padding: '8px', border: '1px solid #666', borderRadius: '4px' }}
+            />
+            <button type="submit" aria-label="Enviar mensaje" style={{ background: '#db1d1d', color: '#fff', border: 'none', padding: '8px 12px', borderRadius: '4px' }}>Enviar</button>
+          </form>
         </section>
       )}
-      <button onClick={() => setIsOpen(!isOpen)} aria-label="Abrir asistente virtual" style={{ borderRadius: '50%', width: '60px', height: '60px' }}>
-        <img src={alpacaImg} alt="" style={{ width: '100%', borderRadius: '50%' }} />
+      
+      <button 
+        onClick={() => setIsOpen(!isOpen)} 
+        aria-expanded={isOpen}
+        aria-label={isOpen ? "Cerrar chat" : "Abrir asistente virtual"}
+        style={{ borderRadius: '50%', width: '60px', height: '60px', border: '2px solid #db1d1d', padding: '0', overflow: 'hidden' }}
+      >
+        <img src={alpacaImg} alt="Icono de Alpaca" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       </button>
     </div>
   );
